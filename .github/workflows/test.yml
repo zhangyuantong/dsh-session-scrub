@@ -1,0 +1,32 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22.19', '24']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Syntax check every module
+        run: |
+          node --check lib/index.js
+          node --check lib/logic.js
+          node --check lib/client.js
+      - name: Unit tests (pure logic)
+        run: npm test
+      - name: Package manifest check
+        run: node -e "const p=require('./package.json');for(const f of p.files){if(!require('node:fs').existsSync(f)){console.error('missing shipped file:',f);process.exit(1)}};console.log('manifest ok')"

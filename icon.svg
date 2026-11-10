@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Scrub session">
+  <rect width="64" height="64" rx="14" fill="#2b3138"/>
+  <g fill="none" stroke="#f2f4f7" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M18 22h28"/>
+    <path d="M27 22v-4h10v4"/>
+    <path d="M23 22l2 24h14l2-24"/>
+    <path d="M29 29v11M35 29v11"/>
+  </g>
+  <g fill="none" stroke="#7cc4a5" stroke-width="3" stroke-linecap="round">
+    <path d="M46 40l4 4M50 40l-4 4"/>
+  </g>
+</svg>

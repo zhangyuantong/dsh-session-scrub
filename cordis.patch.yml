@@ -1,0 +1,19 @@
+# Bundle patch for dsh-session-scrub: one Host row. The package.json
+# `dsh.client` declaration makes the Web app load ./client as the browser half,
+# and every option below is optional.
+- insert:
+    - id: dsh-session-scrub
+      name: dsh-session-scrub
+      config:
+        # Reclaim attachment objects no surviving session cites (default on).
+        attachmentSweep: true
+        # Remove sessions that belong to nobody after each scrub (default on).
+        orphanSweep: true
+        # A session younger than this is never treated as an orphan.
+        orphanMinimumAgeHours: 24
+        # Attachment objects younger than this may belong to an unsent draft.
+        draftGraceMinutes: 60
+        # Wall-clock ceiling for one background attachment sweep.
+        sweepBudgetSeconds: 90
+        # Mount the read-only diagnostic route (development only).
+        diagnostics: false
