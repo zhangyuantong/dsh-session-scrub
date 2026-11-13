@@ -14,8 +14,10 @@ import {
 const HOUR = 60 * 60 * 1000
 
 test('homeOf walks four levels up from a stored log', () => {
-  const home = homeOf('C:\\Users\\me\\.dsh\\sessions\\--proj--\\session-a\\session.v4.jsonl.zstd')
-  assert.equal(home, 'C:\\Users\\me\\.dsh')
+  if (process.platform === 'win32') {
+    const home = homeOf('C:\\Users\\me\\.dsh\\sessions\\--proj--\\session-a\\session.v4.jsonl.zstd')
+    assert.equal(home, 'C:\\Users\\me\\.dsh')
+  }
   assert.equal(homeOf('/home/me/.dsh/sessions/p/s/log.zstd'), '/home/me/.dsh')
 })
 
