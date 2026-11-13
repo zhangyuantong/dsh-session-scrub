@@ -28,11 +28,21 @@
 
 ### 安装
 
+**桌面版（DeepSeek Harness 应用）**：桌面版只能用自带 CLI 管理 `desktop` profile，普通 `dsh` 命令管不了它。
+
+```sh
+"%LOCALAPPDATA%\Programs\DeepSeek Harness\resources\runtime\cli\bin\dsh.cmd" plugin --profile desktop add dsh-session-scrub
+```
+
+装在别处就把前半段换成 `<安装目录>\resources\runtime\cli\bin\dsh.cmd`。也可以在 DSH 的**插件市场**里按包名 `dsh-session-scrub` 安装（市场和 profile 用同一个 npm 源即可）。
+
+**Web / TUI 版**：
+
 ```sh
 dsh plugin --profile <你的 profile> add dsh-session-scrub
 ```
 
-或从本地目录安装：
+也可以从本地目录或 tgz 安装：
 
 ```sh
 dsh plugin --profile <你的 profile> add file:/path/to/dsh-session-scrub
@@ -83,6 +93,7 @@ dsh plugin --profile <你的 profile> add file:/path/to/dsh-session-scrub
 ### 兼容性
 
 - **已验证**：DSH `0.2.2-rc.1` · Windows 11 · Node 24。没有在 macOS/Linux 上实机验证。
+- **预期兼容**：DSH `0.2.2-rc.2`（同一 patch 线，会话层接口未变）。
 - 只依赖公开服务（`connection.fetch`、`webServer`、`sessionPersistence`、`sessionQuery`、`workspaceRegistry`、`schedule`、`agents`）与上面那一个内部方法。
 - DSH 升级后如果会话层接口变动，插件可能失效——失效时表现为菜单点不动或提示“无法确定 DSH 主目录”，不会误删。
 
@@ -120,6 +131,16 @@ keeps attachment objects younger than the draft grace window; never touches fork
 
 ### Install
 
+**Desktop app**: only the CLI bundled with the app can manage the reserved `desktop` profile.
+
+```sh
+"%LOCALAPPDATA%\Programs\DeepSeek Harness\resources\runtime\cli\bin\dsh.cmd" plugin --profile desktop add dsh-session-scrub
+```
+
+For a custom install location, replace the leading path with `<install dir>\resources\runtime\cli\bin\dsh.cmd`. You can also install it from the DSH plugin marketplace by package name.
+
+**Web / TUI**:
+
 ```sh
 dsh plugin --profile <profile> add dsh-session-scrub
 ```
@@ -134,7 +155,7 @@ Restart DSH afterwards, then refresh the page. Right-click a session →
 
 ### Compatibility
 
-Verified on DSH `0.2.2-rc.1`, Windows 11, Node 24. Not verified on macOS/Linux.
+Verified on DSH `0.2.2-rc.1`, Windows 11, Node 24; expected compatible with `0.2.2-rc.2`. Not verified on macOS/Linux.
 
 ## License
 
